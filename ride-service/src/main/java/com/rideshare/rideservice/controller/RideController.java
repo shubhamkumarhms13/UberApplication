@@ -22,7 +22,7 @@ public class RideController {
 
     @PostMapping("/request")
     public ResponseEntity<RideResponse> requestRide(
-            @Valid @RequestBody RideRequest rideRequest){
+            @Valid @RequestBody RideRequest rideRequest) {
         log.info("Ride request received from rider: {}", rideRequest.getRiderId());
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(rideService.requestRide(rideRequest));
@@ -30,32 +30,32 @@ public class RideController {
 
     @GetMapping("/{rideId}")
     public ResponseEntity<RideResponse> getRiderId(
-            @PathVariable String rideId){
+            @PathVariable String rideId) {
         return ResponseEntity.ok(rideService.getRideById(rideId));
     }
 
     @GetMapping("/rider/{riderId}")
     public ResponseEntity<List<RideResponse>> getRidesByRider(
-            @PathVariable String riderId){
+            @PathVariable String riderId) {
         return ResponseEntity.ok(rideService.getRidesByRider(riderId));
     }
 
     //Driver start the ride
     @PutMapping("/{rideId}/start")
     public ResponseEntity<RideResponse> startRide(
-            @PathVariable String rideId){
+            @PathVariable String rideId) {
         return ResponseEntity.ok(rideService.startRide(rideId));
     }
 
     @PutMapping("/{rideId}/complete")
     public ResponseEntity<RideResponse> completeRide(
-            @PathVariable String rideId){
+            @PathVariable String rideId) {
         return ResponseEntity.ok(rideService.completeRide(rideId));
     }
 
     @PutMapping("/{rideId}/cancel")
     public ResponseEntity<RideResponse> cancelRide(
-            @PathVariable String rideId){
+            @PathVariable String rideId) {
         return ResponseEntity.ok(rideService.cancelRide(rideId));
     }
 }

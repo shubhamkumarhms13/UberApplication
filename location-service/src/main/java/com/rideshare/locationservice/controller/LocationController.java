@@ -21,7 +21,7 @@ public class LocationController {
     //driver phone calls this every 3 second
     @PostMapping("/drivers/update")
     public ResponseEntity<String> updateDriverLocation(
-            @RequestBody DriverLocationRequest driverLocationRequest){
+            @RequestBody DriverLocationRequest driverLocationRequest) {
         locationService.updateDriverLocation(driverLocationRequest);
         return ResponseEntity.ok("Driver Location updated");
     }
@@ -31,13 +31,13 @@ public class LocationController {
     public ResponseEntity<List<NearByDriverResponse>> getNearByDrivers(
             @RequestParam double latitude,
             @RequestParam double longitude,
-            @RequestParam (defaultValue = "5.0") double radius){
+            @RequestParam(defaultValue = "5.0") double radius) {
         return ResponseEntity.ok(locationService.findNearByDrivers(latitude, longitude, radius));
     }
 
     //When driver goes offline
     @DeleteMapping("/drivers/{driverId}")
-    public ResponseEntity<String> getDrivers(@PathVariable String driverId){
+    public ResponseEntity<String> getDrivers(@PathVariable String driverId) {
         locationService.removeDriver(driverId);
         return ResponseEntity.ok("Driver removed successfully");
     }
